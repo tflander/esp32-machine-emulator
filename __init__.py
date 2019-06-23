@@ -1,0 +1,1 @@
+from esp32-machine-emulator.machine import machine.pin
