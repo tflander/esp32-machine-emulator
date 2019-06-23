@@ -1,13 +1,4 @@
-# import sys
 from distutils.core import setup
-
-#from pathlib import Path
-
-# __dir__ = Path(__file__).absolute().parent
-# Remove current dir from sys.path, otherwise setuptools will peek up our
-# module instead of system's.
-# sys.path.pop(0)
-# sys.path.append("..")
 
 def read(file_relative):
     file = file_relative
@@ -17,10 +8,10 @@ def read(file_relative):
 setup(
   name = 'esp32-machine-emulator',
   packages = ['esp32-machine-emulator'],
-  version = '0.0.9',
+  version = '0.0.12',
   license='MIT',
   description = 'esp32 machine package for test-driving code off-chip',
-  long_description = read('README.md'),
+  long_description = read('README.rst'),
   author = 'Todd Flanders',
   author_email = 'toddfbass@gmail.com',
   url = 'https://github.com/tflander/esp32-machine-emulator',
