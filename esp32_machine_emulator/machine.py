@@ -22,7 +22,7 @@ def resetExpectationsForTesting():
 def time_pulse_us(pin, pulse_level, timeout_us):
     global expectedPulseTimeErrorForTesting
     if expectedPulseTimeErrorForTesting is not None:
-        raise expectedPulseTimeErrorForTesting
+        raise expectedPulseTimeErrorForTesting # pylint: disable=raising-bad-type
     return expectedPulseTimeForTesting
 
 def sleep_us(delayUs):
