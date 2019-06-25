@@ -32,6 +32,8 @@ def time_pulse_us(pin, pulse_level, timeout_us):
     if type(pulseTime) == int:
         return pulseTime
     else:
+        if pulseTime == []:
+            raise Exception("unexpected call to time_pulse_us on empty expectation list")
         raise pulseTime
 
 def sleep_us(delayUs):
