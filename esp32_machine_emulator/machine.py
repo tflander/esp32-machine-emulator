@@ -23,12 +23,25 @@ def time_pulse_us(pin, pulse_level, timeout_us):
     global expectedPulseTimeErrorForTesting
     if expectedPulseTimeErrorForTesting is not None:
         raise expectedPulseTimeErrorForTesting # pylint: disable=raising-bad-type
-    return expectedPulseTimeForTesting
+
+    try:
+        pulseTime = expectedPulseTimeForTesting.pop(0)
+    except:
+        pulseTime = expectedPulseTimeForTesting
+
+    if type(pulseTime) == int:
+        return pulseTime
+    else:
+        raise pulseTime
 
 def sleep_us(delayUs):
-    pass
+    time.sleep(delayUs / 1000000)
+
+def sleep_ms(delayMs):
+    time.sleep(delayMs / 1000)
 
 time.sleep_us = sleep_us
+time.sleep_ms = sleep_ms
 
 class Pin:
     IN = "in"

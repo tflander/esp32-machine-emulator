@@ -2,5 +2,5 @@
 README.rst
 setup.cfg
 setup.py
-esp32-machine-emulator/__init__.py
-esp32-machine-emulator/machine.py
+esp32_machine_emulator/__init__.py
+esp32_machine_emulator/machine.py
