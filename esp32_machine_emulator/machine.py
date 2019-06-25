@@ -36,14 +36,14 @@ def time_pulse_us(pin, pulse_level, timeout_us):
             raise Exception("unexpected call to time_pulse_us on empty expectation list")
         raise pulseTime
 
-def sleep_us(delayUs):
+def sleep_usForMonkeyPatching(delayUs):
     time.sleep(delayUs / 1000000)
 
-def sleep_ms(delayMs):
+def sleep_msForMonkeyPatching(delayMs):
     time.sleep(delayMs / 1000)
 
-time.sleep_us = sleep_us
-time.sleep_ms = sleep_ms
+time.sleep_us = sleep_usForMonkeyPatching
+time.sleep_ms = sleep_msForMonkeyPatching
 
 class Pin:
     IN = "in"
