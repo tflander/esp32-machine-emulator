@@ -2,48 +2,39 @@
 ESP32 Machine Emulator
 ======================
 
-Title are underlined with equals signs too
-==========================================
+The purpose of this package is to enable you to test-drive (TDD) your
+MicroPython code in an IDE running on your computer.  It seems a lot
+of people are test-driving python, but not many are test-driving MicroPython.
+That's understandable, since many MicroPython projects are simple, and
+emulating real hardware in a test environment is difficult.
 
-ESP32 Machine Emulator
-======================
+The typical approach to emulating hardware is to replicate the hardware
+programming interface (the API).  As of this writing, this library emulates
+a very small slice of the ESP32 API.  I don't know if the library will mature.
+Hopefully I'll either flesh it out, someone else will take over, or a
+replacement will emerge.
 
-Subtitles with dashes
----------------------
+If you are unfamiliar with the benefits of TDD or test-driving python, I
+encourage you to take some time to Google and learn.  I prefer the pytest
+library over the unittest library that comes with python3, but you are free
+to test as you choose.
 
-You can  put text in *italic* or in **bold**, you can "mark" text as
-code with double backquote ``print()``.
+Getting Started
+===============
 
-Lists are as simple as in Markdown:
+Take a look at the examples folder in the GitHub repository.  Like I said,
+as of this writing, the library emulates a very small slice of the API,
+so if you don't see an example for something you want to do, the feature
+is not available.  Feel free to contact me or fork the repo and send me
+a pull request for the feature.
 
-- First item
-- Second item
-    - Sub item
+Here is the github repo for this project:
+https://github.com/tflander/esp32-machine-emulator
 
-or
+Supported Features
+==================
 
-* First item
-* Second item
-    * Sub item
-
-Tables are really easy to write:
-
-=========== ========
-Country     Capital
-=========== ========
-France      Paris
-Japan       Tokyo
-=========== ========
-
-More complex tables can be done easily (merged columns and/or rows)
-but I suggest you to
-read the complete doc for this :)
-
-There are multiple ways to make links:
-
-- By adding an underscore after a word : Github_ and by adding the target
-  URL after the text (this way has the advantage to not insert unnecessary
-  URLs inside readable text).
-
-- By typing a full comprehensible URL : https://github.com/ (will be automatically converted to a link)
-- By making a more Markdown-like link: `Github <https://github.com/>`_ .
+- Emulating sending a GPIO digital out signal, and verifying the signal value.
+- Extending the time library to support sleep_ns() and sleep_ms()
+- Emulating the read pulse value of an input pin, such as that received by
+  the echo pin of an HCSR04 Ultrasonic Distance Sensor.
