@@ -10,10 +10,19 @@ class Hcsr04UltrasonicDistanceSensor:
         self.trigger = machine.Pin(triggerPin, machine.Pin.OUT)
         self.echo = machine.Pin(echoPin, machine.Pin.IN)
 
+    def distanceCm(self):
+        pulse_time = self.sample()
+        return int(round((pulse_time / 2) / 29.1))
+
     def sample(self):
         self.stabilizeSensor()
         self.sendTriggerSignal()
-        return machine.time_pulse_us(self.echo, 1, 30000)
+        try:
+            return machine.time_pulse_us(self.echo, 1, 30000)
+        except OSError as ex:
+            if ex.args[0] == 110:
+                raise OSError("out of range")
+            raise ex
 
     def stabilizeSensor(self):
         self.trigger.value(0)

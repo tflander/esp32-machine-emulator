@@ -19,6 +19,26 @@ def test_verifyPinAssignments(distanceSensor):
     assert distanceSensor.echo.pinForTesting == 6
     assert distanceSensor.trigger.pinForTesting == 5
 
+def test_distanceCm(distanceSensor):
+    machine.expectedPulseTimeForTesting = 123
+    assert distanceSensor.distanceCm() == 2
+
+def test_distanceCmExceptionOutOfRange(distanceSensor):
+    machine.expectedPulseTimeErrorForTesting = OSError(110)
+    try:
+        distanceSensor.distanceCm()
+        assert False, "expected exception to be raised"
+    except OSError as ex:
+        assert ex.args[0] == "out of range"
+
+def test_distanceCmUnexpectedException(distanceSensor):
+    machine.expectedPulseTimeErrorForTesting = OSError('Unexpected Exception')
+    try:
+        distanceSensor.distanceCm()
+        assert False, "expected exception to be raised"
+    except OSError as ex:
+        assert ex.args[0] == "Unexpected Exception"
+
 def test_sampleSendsExpectedTriggerSignals(distanceSensor):
     distanceSensor.sample()
     expectedTriggerSignals = expectedTriggerStabilizationValues + expectedTriggerSignalValues
