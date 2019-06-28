@@ -48,8 +48,10 @@ time.sleep_ms = sleep_msForMonkeyPatching
 class Pin:
     IN = "in"
     OUT = "out"
-    pinForTesting = None
-    currentStateForTesting = None
+
+    def resetExpectationsForTesting(self):
+        self.pinForTesting = None
+        self.currentStateForTesting = None
 
     def __init__(self, pin, mode=OUT, pull=None):
         self.pinForTesting = pin
