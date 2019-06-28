@@ -10,5 +10,16 @@ class Hcsr04UltrasonicDistanceSensor:
         self.trigger = machine.Pin(triggerPin, machine.Pin.OUT)
         self.echo = machine.Pin(echoPin, machine.Pin.IN)
 
+    def sample(self):
+        self.stabilizeSensor()
+        self.sendTriggerSignal()
+        return machine.time_pulse_us(self.echo, 1, 30000)
+
     def stabilizeSensor(self):
-        pass
+        self.trigger.value(0)
+        time.sleep_us(5)
+
+    def sendTriggerSignal(self):
+        self.trigger.value(1)
+        time.sleep_us(10)
+        self.trigger.value(0)
