@@ -1,27 +1,52 @@
-import time
+import time, sys
 try:
     import machine
 except:
     import esp32_machine_emulator.machine as machine
 
-greenLed = machine.Pin(21, machine.Pin.OUT)
-redLed = machine.Pin(22, machine.Pin.OUT)
+class LedSwitcher:
 
-# Note that the machine emulator is monkeypatching the time library.  Python3 expects
-# the sleep() function to take a float, so for a 300ms sleep, you would code
-# >>> import time
-# >>> time.sleep_ms(300)
-# Traceback (most recent call last):
-#  File "<stdin>", line 1, in <module>
-# AttributeError: module 'time' has no attribute 'sleep_ms'
-# >>> import esp32_machine_emulator.machine as machine
-# >>> time.sleep_ms(300)
+    def __init__(self, greenLedPin, redLedPin):
+        self.greenLed = machine.Pin(greenLedPin, machine.Pin.OUT)
+        self.redLed = machine.Pin(redLedPin, machine.Pin.OUT)
 
-def demo():
+    def green(self):
+        self.greenLed.on()
+        self.redLed.off()
+
+    def red(self):
+        self.greenLed.off()
+        self.redLed.on()
+
+ledSwitcher = LedSwitcher(greenLedPin = 21, redLedPin = 22)
+
+def demoToAlternateGreenAndRedLeds():
     while True:
-        greenLed.on()
-        redLed.off()
+        ledSwitcher.green()
         time.sleep_ms(300)
-        greenLed.off()
-        redLed.on()
+        ledSwitcher.red()
         time.sleep_ms(300)
+
+if sys.platform == 'darwin':
+    def test_pinAssignments():
+        assert(ledSwitcher.greenLed.pinForTesting == 21)
+        assert(ledSwitcher.redLed.pinForTesting == 22)
+
+    def test_green():
+            ledSwitcher.green()
+            assert ledSwitcher.greenLed.value() == 1
+            assert ledSwitcher.redLed.value() == 0
+
+    def test_red():
+            ledSwitcher.red()
+            assert ledSwitcher.greenLed.value() == 0
+            assert ledSwitcher.redLed.value() == 1
+
+    ## Normally you would use a test runner, but let's run the tests manually for fun
+    print('Testing Pin Assignments...')
+    test_pinAssignments()
+    print('Testing green...')
+    test_green()    
+    print('Testing red...')
+    test_red()
+    print("all tests passed")
