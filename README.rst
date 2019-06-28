@@ -31,6 +31,12 @@ a pull request for the feature.
 Here is the github repo for this project:
 https://github.com/tflander/esp32-machine-emulator
 
+Here is the project on PyPi:
+https://pypi.org/project/esp32-machine-emulator
+
+Note that the examples are only in the GitHub repo, and are not part of the
+PyPi distribution.
+
 Supported Features
 ==================
 
@@ -38,3 +44,4 @@ Supported Features
 - Extending the time library to support sleep_ns() and sleep_ms()
 - Emulating the read pulse value of an input pin, such as that received by
   the echo pin of an HCSR04 Ultrasonic Distance Sensor.
+- Coming soon: Full emulation of HCSR04 Ultrasonic Distance Sensor

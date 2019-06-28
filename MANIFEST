@@ -4,3 +4,4 @@ setup.cfg
 setup.py
 esp32_machine_emulator/__init__.py
 esp32_machine_emulator/machine.py
+test/test_machine.py
