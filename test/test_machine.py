@@ -16,6 +16,15 @@ def outPin():
 
 class TestPinOut:
     
+    def test_ErrorRaisedWhenGettingValueOfUnitializedPin(self, outPin):
+        machine.resetExpectationsForTesting()
+        ledPin = machine.Pin(1, machine.Pin.OUT)
+        try:
+            ledPin.value()
+            raise Exception("Expected Exception. None Raised.")
+        except Exception as ex:
+            assert ex.args[0] == 'Checking Value of Uninitialized OUT Pin.  Set the value before checking.'
+
     def test_pinOnSetsValueHigh(self, outPin):
         outPin.on()
         assert outPin.value() == 1

@@ -8,7 +8,7 @@ def read(file_relative):
 setup(
   name = 'esp32_machine_emulator',
   packages = ['esp32_machine_emulator'],
-  version = '0.0.6',
+  version = '0.0.7',
   license='MIT',
   description = 'esp32 machine package for test-driving code off-chip',
   long_description = read('README.rst'),

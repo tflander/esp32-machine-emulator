@@ -9,9 +9,7 @@ Portions also tested with esp8266-20190529-v1.11
 import time
 EMULATION_MODE = True
 
-__version__ = '0.0.0'
 __author__ = 'Todd Flanders https://github.com/tflander/Esp32IotKata'
-__license__ = "Apache License 2.0. https://www.apache.org/licenses/LICENSE-2.0"
 
 expectedPulseTimeForTesting = 0
 expectedPulseTimeErrorForTesting = None
@@ -69,7 +67,7 @@ class Pin:
 
     def __init__(self, pin, mode=OUT, pull=None):
         self.pinForTesting = pin
-        resetExpectationsForTesting()
+        self.resetExpectationsForTesting()
 
     def on(self):
         self.currentStateForTesting = 1
@@ -84,5 +82,7 @@ class Pin:
             self.off()
         elif newValue == 1:
             self.on()
+        if(self.currentStateForTesting == None):
+            raise Exception("Checking Value of Uninitialized OUT Pin.  Set the value before checking.")
         return self.currentStateForTesting
 
