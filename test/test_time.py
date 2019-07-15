@@ -1,5 +1,4 @@
 import time
-import esp32_machine_emulator.machine as machine
 from resetMachine import *
 
 class TestTime:

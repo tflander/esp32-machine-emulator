@@ -1,7 +1,4 @@
-import esp32_machine_emulator.machine as machine
-import pytest
 from resetMachine import *
-
 
 @pytest.fixture
 def outPin():
