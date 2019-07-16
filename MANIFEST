@@ -4,4 +4,8 @@ setup.cfg
 setup.py
 esp32_machine_emulator/__init__.py
 esp32_machine_emulator/machine.py
+esp32_machine_emulator/neopixel.py
 test/test_machine.py
+test/test_neopixel.py
+test/test_pin.py
+test/test_time.py

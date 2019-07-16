@@ -2,6 +2,8 @@
 ESP32 Machine Emulator
 ======================
 
+As of July 16, 2019 this project is on-hold.
+
 The purpose of this package is to enable you to test-drive (TDD) your
 MicroPython code in an IDE running on your computer.  It seems a lot
 of people are test-driving python, but not many are test-driving MicroPython.

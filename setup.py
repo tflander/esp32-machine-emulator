@@ -8,7 +8,7 @@ def read(file_relative):
 setup(
   name = 'esp32_machine_emulator',
   packages = ['esp32_machine_emulator'],
-  version = '0.0.7',
+  version = '0.0.8',
   license='MIT',
   description = 'esp32 machine package for test-driving code off-chip',
   long_description = read('README.rst'),
@@ -19,7 +19,7 @@ setup(
   keywords = ['ESP32', "MicroPython", 'TDD'],
   install_requires=[],
   classifiers=[
-    'Development Status :: 1 - Planning',
+    'Development Status :: 7 - Inactive',
     'Intended Audience :: Developers',
     'Topic :: Software Development :: Testing :: Mocking',
     'Topic :: Software Development :: Testing :: Unit',

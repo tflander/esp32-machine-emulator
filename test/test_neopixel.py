@@ -22,7 +22,13 @@ class TestNeoPixel:
         tenPixelStrand[1] = red
         assert tenPixelStrand[0] == green
         assert tenPixelStrand[1] == red
+
+    def test_mustCallWriteToDisplay(self, resetMachine, tenPixelStrand):
+        tenPixelStrand[0] = green
+        tenPixelStrand[1] = red
         assert len(tenPixelStrand.writesForTesting) == 0
+        tenPixelStrand.write()
+        assert len(tenPixelStrand.writesForTesting) == 1
 
     def test_fill(self, resetMachine, tenPixelStrand):
         tenPixelStrand.fill(green)
