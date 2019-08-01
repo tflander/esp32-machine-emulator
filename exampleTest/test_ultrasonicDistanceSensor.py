@@ -1,9 +1,7 @@
-# import os, sys
-# sys.path.append(os.path.abspath('.'))
 
 from exampleSrc.ultrasonicDistanceSensorDemo import Hcsr04UltrasonicDistanceSensor
 import pytest
-import esp32_machine_emulator.machine as machine
+import machine
 
 expectedTriggerStabilizationValues = [0]
 expectedTriggerSignalValues = [1,0]

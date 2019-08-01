@@ -2,7 +2,6 @@
 ESP32 Machine Emulator
 ======================
 
-As of July 16, 2019 this project is on-hold.
 
 The purpose of this package is to enable you to test-drive (TDD) your
 MicroPython code in an IDE running on your computer.  It seems a lot
@@ -46,4 +45,4 @@ Supported Features
 - Extending the time library to support sleep_ns() and sleep_ms()
 - Emulating the read pulse value of an input pin, such as that received by
   the echo pin of an HCSR04 Ultrasonic Distance Sensor.
-- Coming soon: Full emulation of HCSR04 Ultrasonic Distance Sensor
+- Full emulation of HCSR04 Ultrasonic Distance Sensor in examples

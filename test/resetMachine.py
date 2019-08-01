@@ -1,4 +1,4 @@
-import esp32_machine_emulator.machine as machine
+import machine
 import pytest
 
 @pytest.fixture()

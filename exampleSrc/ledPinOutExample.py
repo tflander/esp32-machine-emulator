@@ -1,8 +1,5 @@
 import time, sys
-try:
-    import machine
-except:
-    import esp32_machine_emulator.machine as machine
+import machine
 
 class LedSwitcher:
 

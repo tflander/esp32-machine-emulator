@@ -1,8 +1,5 @@
 import time
-try:
-    import machine
-except:
-    import esp32_machine_emulator.machine as machine
+import machine
 
 class Hcsr04UltrasonicDistanceSensor:
     

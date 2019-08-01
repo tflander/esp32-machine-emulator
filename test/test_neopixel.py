@@ -1,5 +1,5 @@
 from resetMachine import *
-import esp32_machine_emulator.neopixel as neopixel
+import neopixel
 import pytest, time
 
 @pytest.fixture()
