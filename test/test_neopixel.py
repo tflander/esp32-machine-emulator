@@ -71,6 +71,13 @@ class TestNeoPixel:
         assert np.bpp == 4
         assert np.timing == 2
 
+    def test_invalid_bytes_per_pixel(self, resetMachine):
+        try:
+            neopixel.NeoPixel(self.pin, n=10, bpp=5, timing=2)
+            assert 0
+        except OSError:
+            pass
+
 
 def _approximately(exactMilliSeconds):
     return int(exactMilliSeconds / 10) * 10

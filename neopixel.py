@@ -40,14 +40,16 @@ class StrandHistoryForTesting:
     def __init__(self, numPixels, bytesPerPixel):
         self.n = numPixels
         self.bytesPerPixel = bytesPerPixel
-        self.buf = bytearray(numPixels * bytesPerPixel)
+        if bytesPerPixel == 3:
+            self.defaultColor = (0,0,0)
+        elif bytesPerPixel == 4:
+            self.defaultColor = (0, 0, 0, 0)
+        else:
+            raise OSError
+        self.colorList = [self.defaultColor] * numPixels
 
     def __setitem__(self, index, val):
-        offset = index * self.bytesPerPixel
-        for i in range(self.bytesPerPixel):
-            self.buf[offset + i] = val[i]
+        self.colorList[index] = val
 
     def __getitem__(self, index):
-        offset = index * self.bytesPerPixel
-        return tuple(self.buf[offset + i]
-                     for i in range(self.bytesPerPixel))
+        return self.colorList[index]
