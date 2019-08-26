@@ -1,9 +1,8 @@
-import machine
-import pytest
 from resetMachine import *
 
+
 class TestPulse:
-    
+
     def test_returnsExpectedPulse(self, resetMachine):
         machine.expectedPulseTimeForTesting = 123
         assert machine.time_pulse_us(pin=1, pulse_level=1, timeout_us=1000) == 123
@@ -15,7 +14,7 @@ class TestPulse:
             machine.time_pulse_us(pin=1, pulse_level=1, timeout_us=1000)
             raise Exception("Expected error, none raised")
         except OSError as ex:
-            assert(ex.args[0] == 'error for testing')
+            assert (ex.args[0] == 'error for testing')
 
     def test_supportsMultipleExpectedPulseValues(self, resetMachine):
         machine.expectedPulseTimeForTesting = [123, 456, 789]
@@ -40,10 +39,10 @@ class TestPulse:
         assert machine.time_pulse_us(pin=1, pulse_level=1, timeout_us=1000) == 123
 
         try:
+            # noinspection PyStatementEffect
             machine.time_pulse_us(pin=1, pulse_level=1, timeout_us=1000) == 456
             raise Exception("Expected error, none raised")
         except OSError as ex:
-            assert(ex.args[0] == 'error for testing')
+            assert (ex.args[0] == 'error for testing')
 
         assert machine.time_pulse_us(pin=1, pulse_level=1, timeout_us=1000) == 789
-

@@ -1,6 +1,8 @@
-from resetMachine import *
+import time
+
 import neopixel
-import pytest, time
+from resetMachine import *
+
 
 @pytest.fixture()
 def tenPixelStrand():
@@ -14,7 +16,6 @@ green = (0, 255, 0)
 
 
 class TestNeoPixel:
-
     pin = machine.Pin(5)
 
     def test_canSetPixelColor(self, resetMachine, tenPixelStrand):
@@ -82,9 +83,10 @@ class TestNeoPixel:
 def _approximately(exactMilliSeconds):
     return int(exactMilliSeconds / 10) * 10
 
+
 def _allPixelsAreColor(strand, color):
     pixelCount = strand.n
-    for  i in range (pixelCount):
+    for i in range(pixelCount):
         if strand[i] != color:
             return False
     return True

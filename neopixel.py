@@ -1,4 +1,10 @@
-import time, copy
+import copy
+import time
+
+
+def _perfTimeMs():
+    return round(time.perf_counter() * 1000)
+
 
 class NeoPixel:
 
@@ -23,25 +29,22 @@ class NeoPixel:
 
     def write(self):
         if self.firstWriteTimeForTesting is None:
-            self.firstWriteTimeForTesting = self._perfTimeMs()
+            self.firstWriteTimeForTesting = _perfTimeMs()
             self.currentPixelColors.timeFromFirstWrite = 0
         else:
-            self.currentPixelColors.timeFromFirstWrite = self._perfTimeMs() - self.firstWriteTimeForTesting
+            self.currentPixelColors.timeFromFirstWrite = _perfTimeMs() - self.firstWriteTimeForTesting
 
         self.writesForTesting.append(copy.deepcopy(self.currentPixelColors))
 
-    def _perfTimeMs(self):
-        return round(time.perf_counter() * 1000)
 
 class StrandHistoryForTesting:
-
     timeFromFirstWrite = 0
 
     def __init__(self, numPixels, bytesPerPixel):
         self.n = numPixels
         self.bytesPerPixel = bytesPerPixel
         if bytesPerPixel == 3:
-            self.defaultColor = (0,0,0)
+            self.defaultColor = (0, 0, 0)
         elif bytesPerPixel == 4:
             self.defaultColor = (0, 0, 0, 0)
         else:

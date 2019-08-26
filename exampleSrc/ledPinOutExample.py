@@ -1,11 +1,13 @@
-import time, sys
+import time
+
 import machine
+
 
 class LedSwitcher:
 
-    def __init__(self, greenLedPin, redLedPin):
-        self.greenLed = machine.Pin(greenLedPin, machine.Pin.OUT)
-        self.redLed = machine.Pin(redLedPin, machine.Pin.OUT)
+    def __init__(self, green_led_pin, red_led_pin):
+        self.greenLed = machine.Pin(green_led_pin, machine.Pin.OUT)
+        self.redLed = machine.Pin(red_led_pin, machine.Pin.OUT)
 
     def green(self):
         self.greenLed.on()
@@ -15,7 +17,9 @@ class LedSwitcher:
         self.greenLed.off()
         self.redLed.on()
 
-ledSwitcher = LedSwitcher(greenLedPin = 21, redLedPin = 22)
+
+ledSwitcher = LedSwitcher(green_led_pin=21, red_led_pin=22)
+
 
 def demoToAlternateGreenAndRedLeds():
     while True:

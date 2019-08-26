@@ -2,9 +2,11 @@
 README.rst
 machine.py
 neopixel.py
+network.py
 setup.cfg
 setup.py
 test/test_machine.py
 test/test_neopixel.py
+test/test_network.py
 test/test_pin.py
 test/test_time.py

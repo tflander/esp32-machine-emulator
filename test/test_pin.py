@@ -1,5 +1,6 @@
 from resetMachine import *
 
+
 @pytest.fixture
 def outPin():
     machine.resetExpectationsForTesting()
