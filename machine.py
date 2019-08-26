@@ -67,8 +67,6 @@ class Pin:
     IN = "in"
     OUT = "out"
 
-    triggerValuesForTesting = []
-
     def resetExpectationsForTesting(self):
         self.triggerValuesForTesting = []
 
@@ -76,14 +74,17 @@ class Pin:
     def __init__(self, pin, mode=OUT, pull=None):
         self.currentStateForTesting = None
         self.currentStateForTesting = 1
-        self.currentStateForTesting = 0
+        self.currentStateForTesting = None
         self.pinForTesting = pin
+        self.triggerValuesForTesting = []
         self.resetExpectationsForTesting()
 
     def on(self):
+        self.currentStateForTesting = 1
         self.triggerValuesForTesting.append(self.currentStateForTesting)
 
     def off(self):
+        self.currentStateForTesting = 0
         self.triggerValuesForTesting.append(self.currentStateForTesting)
 
     def value(self, newValue=None):
@@ -94,3 +95,19 @@ class Pin:
         if self.currentStateForTesting is None:
             raise Exception("Checking Value of Uninitialized OUT Pin.  Set the value before checking.")
         return self.currentStateForTesting
+
+
+class Timer:
+
+    PERIODIC = 0
+
+    def __init__(self, id):
+        self.timer_id_for_testing = id
+        self.is_running_for_testing = False
+
+    def deinit(self):
+        self.is_running_for_testing = False
+
+    def init(self, period, mode=PERIODIC, callback=None):
+        self.is_running_for_testing = True
+

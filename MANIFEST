@@ -10,3 +10,4 @@ test/test_neopixel.py
 test/test_network.py
 test/test_pin.py
 test/test_time.py
+test/test_timer.py
