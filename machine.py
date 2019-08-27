@@ -16,18 +16,20 @@ expectedPulseTimeForTesting = 0
 expectedPulseTimeErrorForTesting = None
 expectedTimeSleepMs = []
 expectedTimeSleepUs = []
-
+reset_called_for_testing = False
 
 def resetExpectationsForTesting():
     global expectedPulseTimeForTesting
     global expectedPulseTimeErrorForTesting
     global expectedTimeSleepMs
     global expectedTimeSleepUs
+    global reset_called_for_testing
 
     expectedPulseTimeForTesting = 0
     expectedPulseTimeErrorForTesting = None
     expectedTimeSleepMs = []
     expectedTimeSleepUs = []
+    reset_called_for_testing = False
 
 
 # noinspection PyUnusedLocal,PyUnusedLocal,PyUnusedLocal
@@ -47,6 +49,11 @@ def time_pulse_us(pin, pulse_level, timeout_us):
         if not pulse_time:
             raise Exception("unexpected call to time_pulse_us on empty expectation list")
         raise pulse_time
+
+
+def reset():
+    global reset_called_for_testing
+    reset_called_for_testing = True
 
 
 def sleep_us_for_monkey_patching(delayUs):

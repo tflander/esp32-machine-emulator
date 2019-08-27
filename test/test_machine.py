@@ -46,3 +46,12 @@ class TestPulse:
             assert (ex.args[0] == 'error for testing')
 
         assert machine.time_pulse_us(pin=1, pulse_level=1, timeout_us=1000) == 789
+
+class TestReset:
+
+    def test_supports_reset_to_reboot_the_device(self, resetMachine):
+        machine.reset()
+        assert machine.reset_called_for_testing
+
+    def test_not_rebooted(self, resetMachine):
+        assert not machine.reset_called_for_testing
